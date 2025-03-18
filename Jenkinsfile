@@ -57,6 +57,16 @@ pipeline {
             }
         }
 
+        // Remove Docker Image
+        stage('Remove Docker Image') { 
+            steps {
+                sh '''
+                docker rmi lightaflame/spring-petclinic:$BUILD_NUMBER
+                docker rmi lightaflame/spring-petclinic:latest
+                '''
+            }
+        }
+
 
         
         stage('SSH Publish') {
